@@ -2,7 +2,6 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const { connectDB } = require('./config/db');
-const { seedData } = require('./seed');
 const errorHandler = require('./middleware/errorHandler');
 
 // Route imports
@@ -69,8 +68,6 @@ app.use(errorHandler);
 const startServer = async () => {
   try {
     await connectDB();
-    await seedData();
-
     app.listen(PORT, () => {
       console.log(`[Server] EduCore ERP Backend running on http://localhost:${PORT}`);
       console.log(`[Server] API Health check available at http://localhost:${PORT}/api/health`);
